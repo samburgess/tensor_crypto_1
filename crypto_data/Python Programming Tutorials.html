@@ -1,0 +1,3021 @@
+
+<!-- saved from url=(0087)https://pythonprogramming.net/balancing-rnn-data-deep-learning-python-tensorflow-keras/ -->
+<html nighteye="disabled"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+		<!--
+		palette:
+		dark blue: #003F72
+		yellow: #FFD166
+		salmon: #EF476F
+		offwhite: #e7d7d7
+		Light Blue: #118AB2
+		Light green: #7DDF64
+		-->
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Python Programming Tutorials</title>
+
+		<meta name="description" content="Python Programming tutorials from beginner to advanced on a massive variety of topics. All video and text tutorials are free.">
+
+		<link rel="shortcut icon" href="https://pythonprogramming.net/static/favicon.ico">
+		<link rel="stylesheet" href="./Python Programming Tutorials_files/materialize.min.css">
+        <link href="./Python Programming Tutorials_files/icon" rel="stylesheet">
+        <meta name="google-site-verification" content="3fLok05gk5gGtWd_VSXbSSSH27F2kr1QqcxYz9vYq2k">
+        <link rel="stylesheet" type="text/css" href="./Python Programming Tutorials_files/bootstrap.css">
+
+
+		  <!-- Compiled and minified CSS -->
+
+		<!-- Compiled and minified JavaScript -->
+
+		<script async="" src="https://www.google-analytics.com/analytics.js"></script><script src="./Python Programming Tutorials_files/jquery-2.1.4.min.js"></script>
+		<script src="./Python Programming Tutorials_files/materialize.min.js"></script>
+
+
+
+        <style>
+		@media (min-width:992px) {
+		#aside {
+			width:250px;
+		}
+		pre { tab-size: 4;}
+		.btn {background-color:#FFD166;
+			  color:#000;
+		      height:auto;
+			  font-color:#000;
+			  }
+		.btn:hover {background-color:#FFD166;
+					}
+
+
+		</style>
+
+		<!-- Google Tracking -->
+		<script>
+			  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+			  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+			  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+			  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+              ga('config', 'UA-51891827-1', {'anonymize_ip': true});﻿
+			  ga('create', 'UA-51891827-1', 'auto');
+			  ga('send', 'pageview');
+
+		</script>
+
+            
+                
+                    <script async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                    <script>
+                         (adsbygoogle = window.adsbygoogle || []).push({
+                              google_ad_client: "ca-pub-1579050400541873",
+                              enable_page_level_ads: true
+                         });
+                    </script>
+                
+            
+
+
+
+
+	<link rel="stylesheet" type="text/css" href="./Python Programming Tutorials_files/prettify.css"><style type="text/css">.MathJax_Hover_Frame {border-radius: .25em; -webkit-border-radius: .25em; -moz-border-radius: .25em; -khtml-border-radius: .25em; box-shadow: 0px 0px 15px #83A; -webkit-box-shadow: 0px 0px 15px #83A; -moz-box-shadow: 0px 0px 15px #83A; -khtml-box-shadow: 0px 0px 15px #83A; border: 1px solid #A6D ! important; display: inline-block; position: absolute}
+.MathJax_Menu_Button .MathJax_Hover_Arrow {position: absolute; cursor: pointer; display: inline-block; border: 2px solid #AAA; border-radius: 4px; -webkit-border-radius: 4px; -moz-border-radius: 4px; -khtml-border-radius: 4px; font-family: 'Courier New',Courier; font-size: 9px; color: #F0F0F0}
+.MathJax_Menu_Button .MathJax_Hover_Arrow span {display: block; background-color: #AAA; border: 1px solid; border-radius: 3px; line-height: 0; padding: 4px}
+.MathJax_Hover_Arrow:hover {color: white!important; border: 2px solid #CCC!important}
+.MathJax_Hover_Arrow:hover span {background-color: #CCC!important}
+</style><style type="text/css">#MathJax_About {position: fixed; left: 50%; width: auto; text-align: center; border: 3px outset; padding: 1em 2em; background-color: #DDDDDD; color: black; cursor: default; font-family: message-box; font-size: 120%; font-style: normal; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; border-radius: 15px; -webkit-border-radius: 15px; -moz-border-radius: 15px; -khtml-border-radius: 15px; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+#MathJax_About.MathJax_MousePost {outline: none}
+.MathJax_Menu {position: absolute; background-color: white; color: black; width: auto; padding: 5px 0px; border: 1px solid #CCCCCC; margin: 0; cursor: default; font: menu; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; border-radius: 5px; -webkit-border-radius: 5px; -moz-border-radius: 5px; -khtml-border-radius: 5px; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+.MathJax_MenuItem {padding: 1px 2em; background: transparent}
+.MathJax_MenuArrow {position: absolute; right: .5em; padding-top: .25em; color: #666666; font-size: .75em}
+.MathJax_MenuActive .MathJax_MenuArrow {color: white}
+.MathJax_MenuArrow.RTL {left: .5em; right: auto}
+.MathJax_MenuCheck {position: absolute; left: .7em}
+.MathJax_MenuCheck.RTL {right: .7em; left: auto}
+.MathJax_MenuRadioCheck {position: absolute; left: .7em}
+.MathJax_MenuRadioCheck.RTL {right: .7em; left: auto}
+.MathJax_MenuLabel {padding: 1px 2em 3px 1.33em; font-style: italic}
+.MathJax_MenuRule {border-top: 1px solid #DDDDDD; margin: 4px 3px}
+.MathJax_MenuDisabled {color: GrayText}
+.MathJax_MenuActive {background-color: #606872; color: white}
+.MathJax_MenuDisabled:focus, .MathJax_MenuLabel:focus {background-color: #E8E8E8}
+.MathJax_ContextMenu:focus {outline: none}
+.MathJax_ContextMenu .MathJax_MenuItem:focus {outline: none}
+#MathJax_AboutClose {top: .2em; right: .2em}
+.MathJax_Menu .MathJax_MenuClose {top: -10px; left: -10px}
+.MathJax_MenuClose {position: absolute; cursor: pointer; display: inline-block; border: 2px solid #AAA; border-radius: 18px; -webkit-border-radius: 18px; -moz-border-radius: 18px; -khtml-border-radius: 18px; font-family: 'Courier New',Courier; font-size: 24px; color: #F0F0F0}
+.MathJax_MenuClose span {display: block; background-color: #AAA; border: 1.5px solid; border-radius: 18px; -webkit-border-radius: 18px; -moz-border-radius: 18px; -khtml-border-radius: 18px; line-height: 0; padding: 8px 0 6px}
+.MathJax_MenuClose:hover {color: white!important; border: 2px solid #CCC!important}
+.MathJax_MenuClose:hover span {background-color: #CCC!important}
+.MathJax_MenuClose:hover:focus {outline: none}
+</style><style type="text/css">.MathJax_Preview .MJXf-math {color: inherit!important}
+</style><style type="text/css">.MJX_Assistive_MathML {position: absolute!important; top: 0; left: 0; clip: rect(1px, 1px, 1px, 1px); padding: 1px 0 0 0!important; border: 0!important; height: 1px!important; width: 1px!important; overflow: hidden!important; display: block!important; -webkit-touch-callout: none; -webkit-user-select: none; -khtml-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none}
+.MJX_Assistive_MathML.MJX_Assistive_MathML_Block {width: 100%!important}
+</style><style type="text/css">#MathJax_Zoom {position: absolute; background-color: #F0F0F0; overflow: auto; display: block; z-index: 301; padding: .5em; border: 1px solid black; margin: 0; font-weight: normal; font-style: normal; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; -webkit-box-sizing: content-box; -moz-box-sizing: content-box; box-sizing: content-box; box-shadow: 5px 5px 15px #AAAAAA; -webkit-box-shadow: 5px 5px 15px #AAAAAA; -moz-box-shadow: 5px 5px 15px #AAAAAA; -khtml-box-shadow: 5px 5px 15px #AAAAAA; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+#MathJax_ZoomOverlay {position: absolute; left: 0; top: 0; z-index: 300; display: inline-block; width: 100%; height: 100%; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+#MathJax_ZoomFrame {position: relative; display: inline-block; height: 0; width: 0}
+#MathJax_ZoomEventTrap {position: absolute; left: 0; top: 0; z-index: 302; display: inline-block; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+</style><style type="text/css">.MathJax_Preview {color: #888}
+#MathJax_Message {position: fixed; left: 1em; bottom: 1.5em; background-color: #E6E6E6; border: 1px solid #959595; margin: 0px; padding: 2px 8px; z-index: 102; color: black; font-size: 80%; width: auto; white-space: nowrap}
+#MathJax_MSIE_Frame {position: absolute; top: 0; left: 0; width: 0px; z-index: 101; border: 0px; margin: 0px; padding: 0px}
+.MathJax_Error {color: #CC0000; font-style: italic}
+</style><style type="text/css">.MJXp-script {font-size: .8em}
+.MJXp-right {-webkit-transform-origin: right; -moz-transform-origin: right; -ms-transform-origin: right; -o-transform-origin: right; transform-origin: right}
+.MJXp-bold {font-weight: bold}
+.MJXp-italic {font-style: italic}
+.MJXp-scr {font-family: MathJax_Script,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-frak {font-family: MathJax_Fraktur,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-sf {font-family: MathJax_SansSerif,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-cal {font-family: MathJax_Caligraphic,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-mono {font-family: MathJax_Typewriter,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-largeop {font-size: 150%}
+.MJXp-largeop.MJXp-int {vertical-align: -.2em}
+.MJXp-math {display: inline-block; line-height: 1.2; text-indent: 0; font-family: 'Times New Roman',Times,STIXGeneral,serif; white-space: nowrap; border-collapse: collapse}
+.MJXp-display {display: block; text-align: center; margin: 1em 0}
+.MJXp-math span {display: inline-block}
+.MJXp-box {display: block!important; text-align: center}
+.MJXp-box:after {content: " "}
+.MJXp-rule {display: block!important; margin-top: .1em}
+.MJXp-char {display: block!important}
+.MJXp-mo {margin: 0 .15em}
+.MJXp-mfrac {margin: 0 .125em; vertical-align: .25em}
+.MJXp-denom {display: inline-table!important; width: 100%}
+.MJXp-denom > * {display: table-row!important}
+.MJXp-surd {vertical-align: top}
+.MJXp-surd > * {display: block!important}
+.MJXp-script-box > *  {display: table!important; height: 50%}
+.MJXp-script-box > * > * {display: table-cell!important; vertical-align: top}
+.MJXp-script-box > *:last-child > * {vertical-align: bottom}
+.MJXp-script-box > * > * > * {display: block!important}
+.MJXp-mphantom {visibility: hidden}
+.MJXp-munderover {display: inline-table!important}
+.MJXp-over {display: inline-block!important; text-align: center}
+.MJXp-over > * {display: block!important}
+.MJXp-munderover > * {display: table-row!important}
+.MJXp-mtable {vertical-align: .25em; margin: 0 .125em}
+.MJXp-mtable > * {display: inline-table!important; vertical-align: middle}
+.MJXp-mtr {display: table-row!important}
+.MJXp-mtd {display: table-cell!important; text-align: center; padding: .5em 0 0 .5em}
+.MJXp-mtr > .MJXp-mtd:first-child {padding-left: 0}
+.MJXp-mtr:first-child > .MJXp-mtd {padding-top: 0}
+.MJXp-mlabeledtr {display: table-row!important}
+.MJXp-mlabeledtr > .MJXp-mtd:first-child {padding-left: 0}
+.MJXp-mlabeledtr:first-child > .MJXp-mtd {padding-top: 0}
+.MJXp-merror {background-color: #FFFF88; color: #CC0000; border: 1px solid #CC0000; padding: 1px 3px; font-style: normal; font-size: 90%}
+.MJXp-scale0 {-webkit-transform: scaleX(.0); -moz-transform: scaleX(.0); -ms-transform: scaleX(.0); -o-transform: scaleX(.0); transform: scaleX(.0)}
+.MJXp-scale1 {-webkit-transform: scaleX(.1); -moz-transform: scaleX(.1); -ms-transform: scaleX(.1); -o-transform: scaleX(.1); transform: scaleX(.1)}
+.MJXp-scale2 {-webkit-transform: scaleX(.2); -moz-transform: scaleX(.2); -ms-transform: scaleX(.2); -o-transform: scaleX(.2); transform: scaleX(.2)}
+.MJXp-scale3 {-webkit-transform: scaleX(.3); -moz-transform: scaleX(.3); -ms-transform: scaleX(.3); -o-transform: scaleX(.3); transform: scaleX(.3)}
+.MJXp-scale4 {-webkit-transform: scaleX(.4); -moz-transform: scaleX(.4); -ms-transform: scaleX(.4); -o-transform: scaleX(.4); transform: scaleX(.4)}
+.MJXp-scale5 {-webkit-transform: scaleX(.5); -moz-transform: scaleX(.5); -ms-transform: scaleX(.5); -o-transform: scaleX(.5); transform: scaleX(.5)}
+.MJXp-scale6 {-webkit-transform: scaleX(.6); -moz-transform: scaleX(.6); -ms-transform: scaleX(.6); -o-transform: scaleX(.6); transform: scaleX(.6)}
+.MJXp-scale7 {-webkit-transform: scaleX(.7); -moz-transform: scaleX(.7); -ms-transform: scaleX(.7); -o-transform: scaleX(.7); transform: scaleX(.7)}
+.MJXp-scale8 {-webkit-transform: scaleX(.8); -moz-transform: scaleX(.8); -ms-transform: scaleX(.8); -o-transform: scaleX(.8); transform: scaleX(.8)}
+.MJXp-scale9 {-webkit-transform: scaleX(.9); -moz-transform: scaleX(.9); -ms-transform: scaleX(.9); -o-transform: scaleX(.9); transform: scaleX(.9)}
+.MathJax_PHTML .noError {vertical-align: ; font-size: 90%; text-align: left; color: black; padding: 1px 3px; border: 1px solid}
+</style></head>
+
+	<body class="body" style=""><div id="MathJax_Message" style="display: none;"></div>
+
+		<div class="navbar-fixed">
+			<nav style="background-color:#003F72">
+				<div class="nav-wrapper container">
+					<a href="https://pythonprogramming.net/" class="brand-logo"><img class="img-responsive" style="width:50px; height;50px; margin-top:5px" src="./Python Programming Tutorials_files/mainlogowhitethick.jpg"></a>
+					<a href="https://pythonprogramming.net/balancing-rnn-data-deep-learning-python-tensorflow-keras/#" data-activates="navsidebar" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
+					<ul class="right hide-on-med-and-down">
+					<li><i class="material-icons">search</i></li>
+					<li>
+						<form method="get" id="searchform" style="height:50px; padding-top:10px" action="https://pythonprogramming.net/search/?l=hi">
+							<input name="q" id="search" type="search" placeholder="search" style="font-size:16px">
+						</form>
+					</li>
+						
+			<li><a href="https://pythonprogramming.net/">Home</a></li>
+			<li><a class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="sudo apt-get upgrade" href="https://pythonprogramming.net/+=1/" data-tooltip-id="9876c73a-f566-a955-be72-70c04566ebc9">+=1</a></li>
+			<!--<li><a href="/store/python-hoodie/">Store</a></li>-->
+			<li><a href="https://pythonprogramming.net/support/">Support the Content</a></li>
+			
+			<li><a href="https://goo.gl/7zgAVQ" target="blank"><!--<i class="material-icons">question_answer</i>-->Community</a></li>
+				<li><a href="https://pythonprogramming.net/login/">Log in</a></li>
+                <li><a href="https://pythonprogramming.net/register/">Sign up</a></li>
+			
+
+					</ul>
+					<ul class="side-nav" id="navsidebar">
+					<li>
+						<form method="get" id="searchform" style="height:50px; padding-top:10px" action="https://pythonprogramming.net/search/?l=hi">
+							<input name="q" id="search" type="search" placeholder="search" style="font-size:16px">
+						</form>
+					</li>
+						
+			<li><a href="https://pythonprogramming.net/">Home</a></li>
+			<li><a class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="sudo apt-get upgrade" href="https://pythonprogramming.net/+=1/" data-tooltip-id="25399550-6407-ac42-4886-6a0777c2ce55">+=1</a></li>
+			<!--<li><a href="/store/python-hoodie/">Store</a></li>-->
+			<li><a href="https://pythonprogramming.net/support/">Support the Content</a></li>
+			
+			<li><a href="https://goo.gl/7zgAVQ" target="blank"><!--<i class="material-icons">question_answer</i>-->Community</a></li>
+				<li><a href="https://pythonprogramming.net/login/">Log in</a></li>
+                <li><a href="https://pythonprogramming.net/register/">Sign up</a></li>
+			
+
+					</ul>
+				</div>
+			</nav>
+		</div>
+
+
+
+		<!-- main content -->
+		<div class="container" style="max-width:1500px; min-height:100%">
+			<!--Notification:-->
+            <!--<p style="font-size:80%">TensorFlow.js Livestream:  <a href="https://www.youtube.com/watch?v=NjSlj95lliM" target="blank"><strong>Deep Learning in the browser</strong></a></p>-->
+            <!--End Notification:-->
+
+					
+					
+					  
+					
+
+					
+<!--       <pre class="prettyprint">              width="750" height="423"    -->
+
+    <div class="row">
+    <div class="col l8 m12 s12">
+
+
+      <div class="container-fluid" align="left">
+		
+
+
+
+
+
+
+
+		<br>
+		<h2>Balancing Recurrent Neural Network sequence data for our crypto predicting RNN - Deep Learning basics with Python, TensorFlow and Keras p.10</h2>
+		<br>
+
+		<div class="video-container"><iframe width="560" height="315" src="./Python Programming Tutorials_files/jjmwM92xwq0.html" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen=""></iframe></div><br>
+		
+
+
+
+
+
+
+		<br>
+
+
+<title>Cryptocurrency RNN p.3 - Deep Learning basics with Python, TensorFlow and Keras p.10</title><script src="./Python Programming Tutorials_files/require.min.js"></script>
+<script src="./Python Programming Tutorials_files/jquery.min.js"></script>
+
+<style type="text/css">
+    .highlight .hll { background-color: #ffffcc }
+.highlight  { background: #f8f8f8; }
+.highlight .c { color: #408080; font-style: italic } /* Comment */
+.highlight .err { border: 1px solid #FF0000 } /* Error */
+.highlight .k { color: #008000; font-weight: bold } /* Keyword */
+.highlight .o { color: #666666 } /* Operator */
+.highlight .ch { color: #408080; font-style: italic } /* Comment.Hashbang */
+.highlight .cm { color: #408080; font-style: italic } /* Comment.Multiline */
+.highlight .cp { color: #BC7A00 } /* Comment.Preproc */
+.highlight .cpf { color: #408080; font-style: italic } /* Comment.PreprocFile */
+.highlight .c1 { color: #408080; font-style: italic } /* Comment.Single */
+.highlight .cs { color: #408080; font-style: italic } /* Comment.Special */
+.highlight .gd { color: #A00000 } /* Generic.Deleted */
+.highlight .ge { font-style: italic } /* Generic.Emph */
+.highlight .gr { color: #FF0000 } /* Generic.Error */
+.highlight .gh { color: #000080; font-weight: bold } /* Generic.Heading */
+.highlight .gi { color: #00A000 } /* Generic.Inserted */
+.highlight .go { color: #888888 } /* Generic.Output */
+.highlight .gp { color: #000080; font-weight: bold } /* Generic.Prompt */
+.highlight .gs { font-weight: bold } /* Generic.Strong */
+.highlight .gu { color: #800080; font-weight: bold } /* Generic.Subheading */
+.highlight .gt { color: #0044DD } /* Generic.Traceback */
+.highlight .kc { color: #008000; font-weight: bold } /* Keyword.Constant */
+.highlight .kd { color: #008000; font-weight: bold } /* Keyword.Declaration */
+.highlight .kn { color: #008000; font-weight: bold } /* Keyword.Namespace */
+.highlight .kp { color: #008000 } /* Keyword.Pseudo */
+.highlight .kr { color: #008000; font-weight: bold } /* Keyword.Reserved */
+.highlight .kt { color: #B00040 } /* Keyword.Type */
+.highlight .m { color: #666666 } /* Literal.Number */
+.highlight .s { color: #BA2121 } /* Literal.String */
+.highlight .na { color: #7D9029 } /* Name.Attribute */
+.highlight .nb { color: #008000 } /* Name.Builtin */
+.highlight .nc { color: #0000FF; font-weight: bold } /* Name.Class */
+.highlight .no { color: #880000 } /* Name.Constant */
+.highlight .nd { color: #AA22FF } /* Name.Decorator */
+.highlight .ni { color: #999999; font-weight: bold } /* Name.Entity */
+.highlight .ne { color: #D2413A; font-weight: bold } /* Name.Exception */
+.highlight .nf { color: #0000FF } /* Name.Function */
+.highlight .nl { color: #A0A000 } /* Name.Label */
+.highlight .nn { color: #0000FF; font-weight: bold } /* Name.Namespace */
+.highlight .nt { color: #008000; font-weight: bold } /* Name.Tag */
+.highlight .nv { color: #19177C } /* Name.Variable */
+.highlight .ow { color: #AA22FF; font-weight: bold } /* Operator.Word */
+.highlight .w { color: #bbbbbb } /* Text.Whitespace */
+.highlight .mb { color: #666666 } /* Literal.Number.Bin */
+.highlight .mf { color: #666666 } /* Literal.Number.Float */
+.highlight .mh { color: #666666 } /* Literal.Number.Hex */
+.highlight .mi { color: #666666 } /* Literal.Number.Integer */
+.highlight .mo { color: #666666 } /* Literal.Number.Oct */
+.highlight .sa { color: #BA2121 } /* Literal.String.Affix */
+.highlight .sb { color: #BA2121 } /* Literal.String.Backtick */
+.highlight .sc { color: #BA2121 } /* Literal.String.Char */
+.highlight .dl { color: #BA2121 } /* Literal.String.Delimiter */
+.highlight .sd { color: #BA2121; font-style: italic } /* Literal.String.Doc */
+.highlight .s2 { color: #BA2121 } /* Literal.String.Double */
+.highlight .se { color: #BB6622; font-weight: bold } /* Literal.String.Escape */
+.highlight .sh { color: #BA2121 } /* Literal.String.Heredoc */
+.highlight .si { color: #BB6688; font-weight: bold } /* Literal.String.Interpol */
+.highlight .sx { color: #008000 } /* Literal.String.Other */
+.highlight .sr { color: #BB6688 } /* Literal.String.Regex */
+.highlight .s1 { color: #BA2121 } /* Literal.String.Single */
+.highlight .ss { color: #19177C } /* Literal.String.Symbol */
+.highlight .bp { color: #008000 } /* Name.Builtin.Pseudo */
+.highlight .fm { color: #0000FF } /* Name.Function.Magic */
+.highlight .vc { color: #19177C } /* Name.Variable.Class */
+.highlight .vg { color: #19177C } /* Name.Variable.Global */
+.highlight .vi { color: #19177C } /* Name.Variable.Instance */
+.highlight .vm { color: #19177C } /* Name.Variable.Magic */
+.highlight .il { color: #666666 } /* Literal.Number.Integer.Long */
+    </style>
+<style type="text/css">
+
+/* Temporary definitions which will become obsolete with Notebook release 5.0 */
+.ansi-black-fg { color: #3E424D; }
+.ansi-black-bg { background-color: #3E424D; }
+.ansi-black-intense-fg { color: #282C36; }
+.ansi-black-intense-bg { background-color: #282C36; }
+.ansi-red-fg { color: #E75C58; }
+.ansi-red-bg { background-color: #E75C58; }
+.ansi-red-intense-fg { color: #B22B31; }
+.ansi-red-intense-bg { background-color: #B22B31; }
+.ansi-green-fg { color: #00A250; }
+.ansi-green-bg { background-color: #00A250; }
+.ansi-green-intense-fg { color: #007427; }
+.ansi-green-intense-bg { background-color: #007427; }
+.ansi-yellow-fg { color: #DDB62B; }
+.ansi-yellow-bg { background-color: #DDB62B; }
+.ansi-yellow-intense-fg { color: #B27D12; }
+.ansi-yellow-intense-bg { background-color: #B27D12; }
+.ansi-blue-fg { color: #208FFB; }
+.ansi-blue-bg { background-color: #208FFB; }
+.ansi-blue-intense-fg { color: #0065CA; }
+.ansi-blue-intense-bg { background-color: #0065CA; }
+.ansi-magenta-fg { color: #D160C4; }
+.ansi-magenta-bg { background-color: #D160C4; }
+.ansi-magenta-intense-fg { color: #A03196; }
+.ansi-magenta-intense-bg { background-color: #A03196; }
+.ansi-cyan-fg { color: #60C6C8; }
+.ansi-cyan-bg { background-color: #60C6C8; }
+.ansi-cyan-intense-fg { color: #258F8F; }
+.ansi-cyan-intense-bg { background-color: #258F8F; }
+.ansi-white-fg { color: #C5C1B4; }
+.ansi-white-bg { background-color: #C5C1B4; }
+.ansi-white-intense-fg { color: #A1A6B2; }
+.ansi-white-intense-bg { background-color: #A1A6B2; }
+
+.ansi-bold { font-weight: bold; }
+
+    </style>
+
+
+<style type="text/css">
+/* Overrides of notebook CSS for static HTML export */
+body {
+  overflow: visible;
+  padding: 8px;
+}
+
+div#notebook {
+  overflow: visible;
+  border-top: none;
+}@media print {
+  div.cell {
+    display: block;
+    page-break-inside: avoid;
+  }
+  div.output_wrapper {
+    display: block;
+    page-break-inside: avoid;
+  }
+  div.output {
+    display: block;
+    page-break-inside: avoid;
+  }
+}
+</style>
+
+<!-- Custom stylesheet, it must be in the same directory as the html file -->
+<link rel="stylesheet" href="https://pythonprogramming.net/balancing-rnn-data-deep-learning-python-tensorflow-keras/custom.css">
+
+<!-- Loading mathjax macro -->
+<!-- Load mathjax -->
+    <script src="./Python Programming Tutorials_files/MathJax.js"></script>
+    <!-- MathJax configuration -->
+    <script type="text/x-mathjax-config;executed=true">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+            displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+            processEscapes: true,
+            processEnvironments: true
+        },
+        // Center justify equations in code and markdown cells. Elsewhere
+        // we use CSS to left justify single line equations in code cells.
+        displayAlign: 'center',
+        "HTML-CSS": {
+            styles: {'.MathJax_Display': {"margin": 0}},
+            linebreaks: { automatic: true }
+        }
+    });
+    </script>
+    <!-- End of mathjax configuration -->
+
+  <div tabindex="-1" id="notebook" class="border-box-sizing">
+    <div id="notebook-container">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Welcome to the next part of our Deep Learning with Python, TensorFlow, and Keras tutorial series. In this tutorial, we're going to continue building our cryptocurrency-price-predicting Recurrent Neural Network.</p>
+<p>We left off with building our <code>preprocess_df</code> function. We've normalized and scaled our data. Next we want to balance it.</p>
+<p>Our code up to this point:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">random</span>
+<span class="kn">from</span> <span class="nn">sklearn</span> <span class="k">import</span> <span class="n">preprocessing</span>  <span class="c1"># pip install sklearn ... if you don't have it!</span>
+
+<span class="n">SEQ_LEN</span> <span class="o">=</span> <span class="mi">60</span>  <span class="c1"># how long of a preceeding sequence to collect for RNN</span>
+<span class="n">FUTURE_PERIOD_PREDICT</span> <span class="o">=</span> <span class="mi">3</span>  <span class="c1"># how far into the future are we trying to predict?</span>
+<span class="n">RATIO_TO_PREDICT</span> <span class="o">=</span> <span class="s2">"LTC-USD"</span>
+
+
+<span class="k">def</span> <span class="nf">classify</span><span class="p">(</span><span class="n">current</span><span class="p">,</span> <span class="n">future</span><span class="p">):</span>
+    <span class="k">if</span> <span class="nb">float</span><span class="p">(</span><span class="n">future</span><span class="p">)</span> <span class="o">&gt;</span> <span class="nb">float</span><span class="p">(</span><span class="n">current</span><span class="p">):</span>  <span class="c1"># if the future price is higher than the current, that's a buy, or a 1</span>
+        <span class="k">return</span> <span class="mi">1</span>
+    <span class="k">else</span><span class="p">:</span>  <span class="c1"># otherwise... it's a 0!</span>
+        <span class="k">return</span> <span class="mi">0</span>
+
+
+<span class="k">def</span> <span class="nf">preprocess_df</span><span class="p">(</span><span class="n">df</span><span class="p">):</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s2">"future"</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>  <span class="c1"># don't need this anymore.</span>
+
+    <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>  <span class="c1"># go through all of the columns</span>
+        <span class="k">if</span> <span class="n">col</span> <span class="o">!=</span> <span class="s2">"target"</span><span class="p">:</span>  <span class="c1"># normalize all ... except for the target itself!</span>
+            <span class="n">df</span><span class="p">[</span><span class="n">col</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">col</span><span class="p">]</span><span class="o">.</span><span class="n">pct_change</span><span class="p">()</span>  <span class="c1"># pct change "normalizes" the different currencies (each crypto coin has vastly diff values, we're really more interested in the other coin's movements)</span>
+            <span class="n">df</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>  <span class="c1"># remove the nas created by pct_change</span>
+            <span class="n">df</span><span class="p">[</span><span class="n">col</span><span class="p">]</span> <span class="o">=</span> <span class="n">preprocessing</span><span class="o">.</span><span class="n">scale</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">col</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>  <span class="c1"># scale between 0 and 1.</span>
+
+    <span class="n">df</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>  <span class="c1"># cleanup again... jic. Those nasty NaNs love to creep in.</span>
+
+    <span class="n">sequential_data</span> <span class="o">=</span> <span class="p">[]</span>  <span class="c1"># this is a list that will CONTAIN the sequences</span>
+    <span class="n">prev_days</span> <span class="o">=</span> <span class="n">deque</span><span class="p">(</span><span class="n">maxlen</span><span class="o">=</span><span class="n">SEQ_LEN</span><span class="p">)</span>  <span class="c1"># These will be our actual sequences. They are made with deque, which keeps the maximum length by popping out older values as new ones come in</span>
+
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">values</span><span class="p">:</span>  <span class="c1"># iterate over the values</span>
+        <span class="n">prev_days</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">n</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">i</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]])</span>  <span class="c1"># store all but the target</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">prev_days</span><span class="p">)</span> <span class="o">==</span> <span class="n">SEQ_LEN</span><span class="p">:</span>  <span class="c1"># make sure we have 60 sequences!</span>
+            <span class="n">sequential_data</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">prev_days</span><span class="p">),</span> <span class="n">i</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]])</span>  <span class="c1"># append those bad boys!</span>
+
+    <span class="n">random</span><span class="o">.</span><span class="n">shuffle</span><span class="p">(</span><span class="n">sequential_data</span><span class="p">)</span>  <span class="c1"># shuffle for good measure.</span>
+
+
+<span class="n">main_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span> <span class="c1"># begin empty</span>
+
+<span class="n">ratios</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"BTC-USD"</span><span class="p">,</span> <span class="s2">"LTC-USD"</span><span class="p">,</span> <span class="s2">"BCH-USD"</span><span class="p">,</span> <span class="s2">"ETH-USD"</span><span class="p">]</span>  <span class="c1"># the 4 ratios we want to consider</span>
+<span class="k">for</span> <span class="n">ratio</span> <span class="ow">in</span> <span class="n">ratios</span><span class="p">:</span>  <span class="c1"># begin iteration</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">ratio</span><span class="p">)</span>
+    <span class="n">dataset</span> <span class="o">=</span> <span class="n">f</span><span class="s1">'training_datas/</span><span class="si">{ratio}</span><span class="s1">.csv'</span>  <span class="c1"># get the full path to the file.</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">dataset</span><span class="p">,</span> <span class="n">names</span><span class="o">=</span><span class="p">[</span><span class="s1">'time'</span><span class="p">,</span> <span class="s1">'low'</span><span class="p">,</span> <span class="s1">'high'</span><span class="p">,</span> <span class="s1">'open'</span><span class="p">,</span> <span class="s1">'close'</span><span class="p">,</span> <span class="s1">'volume'</span><span class="p">])</span>  <span class="c1"># read in specific file</span>
+
+    <span class="c1"># rename volume and close to include the ticker so we can still which close/volume is which:</span>
+    <span class="n">df</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="s2">"close"</span><span class="p">:</span> <span class="n">f</span><span class="s2">"</span><span class="si">{ratio}</span><span class="s2">_close"</span><span class="p">,</span> <span class="s2">"volume"</span><span class="p">:</span> <span class="n">f</span><span class="s2">"</span><span class="si">{ratio}</span><span class="s2">_volume"</span><span class="p">},</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="n">df</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s2">"time"</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>  <span class="c1"># set time as index so we can join them on this shared time</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="p">[[</span><span class="n">f</span><span class="s2">"</span><span class="si">{ratio}</span><span class="s2">_close"</span><span class="p">,</span> <span class="n">f</span><span class="s2">"</span><span class="si">{ratio}</span><span class="s2">_volume"</span><span class="p">]]</span>  <span class="c1"># ignore the other columns besides price and volume</span>
+
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">main_df</span><span class="p">)</span><span class="o">==</span><span class="mi">0</span><span class="p">:</span>  <span class="c1"># if the dataframe is empty</span>
+        <span class="n">main_df</span> <span class="o">=</span> <span class="n">df</span>  <span class="c1"># then it's just the current df</span>
+    <span class="k">else</span><span class="p">:</span>  <span class="c1"># otherwise, join this data to the main one</span>
+        <span class="n">main_df</span> <span class="o">=</span> <span class="n">main_df</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+
+<span class="n">main_df</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s2">"ffill"</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>  <span class="c1"># if there are gaps in data, use previously known values</span>
+<span class="n">main_df</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="c1">#print(main_df.head())  # how did we do??</span>
+
+<span class="n">main_df</span><span class="p">[</span><span class="s1">'future'</span><span class="p">]</span> <span class="o">=</span> <span class="n">main_df</span><span class="p">[</span><span class="n">f</span><span class="s1">'</span><span class="si">{RATIO_TO_PREDICT}</span><span class="s1">_close'</span><span class="p">]</span><span class="o">.</span><span class="n">shift</span><span class="p">(</span><span class="o">-</span><span class="n">FUTURE_PERIOD_PREDICT</span><span class="p">)</span>
+<span class="n">main_df</span><span class="p">[</span><span class="s1">'target'</span><span class="p">]</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="n">classify</span><span class="p">,</span> <span class="n">main_df</span><span class="p">[</span><span class="n">f</span><span class="s1">'</span><span class="si">{RATIO_TO_PREDICT}</span><span class="s1">_close'</span><span class="p">],</span> <span class="n">main_df</span><span class="p">[</span><span class="s1">'future'</span><span class="p">]))</span>
+
+<span class="c1">#print(main_df.head())</span>
+
+<span class="n">times</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">main_df</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>  <span class="c1"># get the times</span>
+<span class="n">last_5pct</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">main_df</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">values</span><span class="p">)[</span><span class="o">-</span><span class="nb">int</span><span class="p">(</span><span class="mf">0.05</span><span class="o">*</span><span class="nb">len</span><span class="p">(</span><span class="n">times</span><span class="p">))]</span>  <span class="c1"># get the last 5% of the times</span>
+
+<span class="n">validation_main_df</span> <span class="o">=</span> <span class="n">main_df</span><span class="p">[(</span><span class="n">main_df</span><span class="o">.</span><span class="n">index</span> <span class="o">&gt;=</span> <span class="n">last_5pct</span><span class="p">)]</span>  <span class="c1"># make the validation data where the index is in the last 5%</span>
+<span class="n">main_df</span> <span class="o">=</span> <span class="n">main_df</span><span class="p">[(</span><span class="n">main_df</span><span class="o">.</span><span class="n">index</span> <span class="o">&lt;</span> <span class="n">last_5pct</span><span class="p">)]</span>  <span class="c1"># now the main_df is all the data up to the last 5%</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>BTC-USD
+LTC-USD
+BCH-USD
+ETH-USD
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Continuing along in our <code>preprocess_df</code> function, we can balance by doing:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span>    <span class="n">buys</span> <span class="o">=</span> <span class="p">[]</span>  <span class="c1"># list that will store our buy sequences and targets</span>
+    <span class="n">sells</span> <span class="o">=</span> <span class="p">[]</span>  <span class="c1"># list that will store our sell sequences and targets</span>
+
+    <span class="k">for</span> <span class="n">seq</span><span class="p">,</span> <span class="n">target</span> <span class="ow">in</span> <span class="n">sequential_data</span><span class="p">:</span>  <span class="c1"># iterate over the sequential data</span>
+        <span class="k">if</span> <span class="n">target</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>  <span class="c1"># if it's a "not buy"</span>
+            <span class="n">sells</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">seq</span><span class="p">,</span> <span class="n">target</span><span class="p">])</span>  <span class="c1"># append to sells list</span>
+        <span class="k">elif</span> <span class="n">target</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>  <span class="c1"># otherwise if the target is a 1...</span>
+            <span class="n">buys</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">seq</span><span class="p">,</span> <span class="n">target</span><span class="p">])</span>  <span class="c1"># it's a buy!</span>
+
+    <span class="n">random</span><span class="o">.</span><span class="n">shuffle</span><span class="p">(</span><span class="n">buys</span><span class="p">)</span>  <span class="c1"># shuffle the buys</span>
+    <span class="n">random</span><span class="o">.</span><span class="n">shuffle</span><span class="p">(</span><span class="n">sells</span><span class="p">)</span>  <span class="c1"># shuffle the sells!</span>
+
+    <span class="n">lower</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">buys</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">sells</span><span class="p">))</span>  <span class="c1"># what's the shorter length?</span>
+
+    <span class="n">buys</span> <span class="o">=</span> <span class="n">buys</span><span class="p">[:</span><span class="n">lower</span><span class="p">]</span>  <span class="c1"># make sure both lists are only up to the shortest length.</span>
+    <span class="n">sells</span> <span class="o">=</span> <span class="n">sells</span><span class="p">[:</span><span class="n">lower</span><span class="p">]</span>  <span class="c1"># make sure both lists are only up to the shortest length.</span>
+
+    <span class="n">sequential_data</span> <span class="o">=</span> <span class="n">buys</span><span class="o">+</span><span class="n">sells</span>  <span class="c1"># add them together</span>
+    <span class="n">random</span><span class="o">.</span><span class="n">shuffle</span><span class="p">(</span><span class="n">sequential_data</span><span class="p">)</span>  <span class="c1"># another shuffle, so the model doesn't get confused with all 1 class then the other.</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Now, all we need to do is split the data back to featuresets and labels/targets. Easy enough:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span>    <span class="n">X</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="k">for</span> <span class="n">seq</span><span class="p">,</span> <span class="n">target</span> <span class="ow">in</span> <span class="n">sequential_data</span><span class="p">:</span>  <span class="c1"># going over our new sequential data</span>
+        <span class="n">X</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">seq</span><span class="p">)</span>  <span class="c1"># X is the sequences</span>
+        <span class="n">y</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">target</span><span class="p">)</span>  <span class="c1"># y is the targets/labels (buys vs sell/notbuy)</span>
+
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">X</span><span class="p">),</span> <span class="n">y</span>  <span class="c1"># return X and y...and make X a numpy array! ..import numpy as np</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Full function now:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">preprocess_df</span><span class="p">(</span><span class="n">df</span><span class="p">):</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s2">"future"</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>  <span class="c1"># don't need this anymore.</span>
+
+    <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>  <span class="c1"># go through all of the columns</span>
+        <span class="k">if</span> <span class="n">col</span> <span class="o">!=</span> <span class="s2">"target"</span><span class="p">:</span>  <span class="c1"># normalize all ... except for the target itself!</span>
+            <span class="n">df</span><span class="p">[</span><span class="n">col</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">col</span><span class="p">]</span><span class="o">.</span><span class="n">pct_change</span><span class="p">()</span>  <span class="c1"># pct change "normalizes" the different currencies (each crypto coin has vastly diff values, we're really more interested in the other coin's movements)</span>
+            <span class="n">df</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>  <span class="c1"># remove the nas created by pct_change</span>
+            <span class="n">df</span><span class="p">[</span><span class="n">col</span><span class="p">]</span> <span class="o">=</span> <span class="n">preprocessing</span><span class="o">.</span><span class="n">scale</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">col</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>  <span class="c1"># scale between 0 and 1.</span>
+
+    <span class="n">df</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>  <span class="c1"># cleanup again... jic.</span>
+
+
+    <span class="n">sequential_data</span> <span class="o">=</span> <span class="p">[]</span>  <span class="c1"># this is a list that will CONTAIN the sequences</span>
+    <span class="n">prev_days</span> <span class="o">=</span> <span class="n">deque</span><span class="p">(</span><span class="n">maxlen</span><span class="o">=</span><span class="n">SEQ_LEN</span><span class="p">)</span>  <span class="c1"># These will be our actual sequences. They are made with deque, which keeps the maximum length by popping out older values as new ones come in</span>
+
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">values</span><span class="p">:</span>  <span class="c1"># iterate over the values</span>
+        <span class="n">prev_days</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">n</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">i</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]])</span>  <span class="c1"># store all but the target</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">prev_days</span><span class="p">)</span> <span class="o">==</span> <span class="n">SEQ_LEN</span><span class="p">:</span>  <span class="c1"># make sure we have 60 sequences!</span>
+            <span class="n">sequential_data</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">prev_days</span><span class="p">),</span> <span class="n">i</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]])</span>  <span class="c1"># append those bad boys!</span>
+
+    <span class="n">random</span><span class="o">.</span><span class="n">shuffle</span><span class="p">(</span><span class="n">sequential_data</span><span class="p">)</span>  <span class="c1"># shuffle for good measure.</span>
+
+    <span class="n">buys</span> <span class="o">=</span> <span class="p">[]</span>  <span class="c1"># list that will store our buy sequences and targets</span>
+    <span class="n">sells</span> <span class="o">=</span> <span class="p">[]</span>  <span class="c1"># list that will store our sell sequences and targets</span>
+
+    <span class="k">for</span> <span class="n">seq</span><span class="p">,</span> <span class="n">target</span> <span class="ow">in</span> <span class="n">sequential_data</span><span class="p">:</span>  <span class="c1"># iterate over the sequential data</span>
+        <span class="k">if</span> <span class="n">target</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>  <span class="c1"># if it's a "not buy"</span>
+            <span class="n">sells</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">seq</span><span class="p">,</span> <span class="n">target</span><span class="p">])</span>  <span class="c1"># append to sells list</span>
+        <span class="k">elif</span> <span class="n">target</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>  <span class="c1"># otherwise if the target is a 1...</span>
+            <span class="n">buys</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">seq</span><span class="p">,</span> <span class="n">target</span><span class="p">])</span>  <span class="c1"># it's a buy!</span>
+
+    <span class="n">random</span><span class="o">.</span><span class="n">shuffle</span><span class="p">(</span><span class="n">buys</span><span class="p">)</span>  <span class="c1"># shuffle the buys</span>
+    <span class="n">random</span><span class="o">.</span><span class="n">shuffle</span><span class="p">(</span><span class="n">sells</span><span class="p">)</span>  <span class="c1"># shuffle the sells!</span>
+
+    <span class="n">lower</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">buys</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">sells</span><span class="p">))</span>  <span class="c1"># what's the shorter length?</span>
+
+    <span class="n">buys</span> <span class="o">=</span> <span class="n">buys</span><span class="p">[:</span><span class="n">lower</span><span class="p">]</span>  <span class="c1"># make sure both lists are only up to the shortest length.</span>
+    <span class="n">sells</span> <span class="o">=</span> <span class="n">sells</span><span class="p">[:</span><span class="n">lower</span><span class="p">]</span>  <span class="c1"># make sure both lists are only up to the shortest length.</span>
+
+    <span class="n">sequential_data</span> <span class="o">=</span> <span class="n">buys</span><span class="o">+</span><span class="n">sells</span>  <span class="c1"># add them together</span>
+    <span class="n">random</span><span class="o">.</span><span class="n">shuffle</span><span class="p">(</span><span class="n">sequential_data</span><span class="p">)</span>  <span class="c1"># another shuffle, so the model doesn't get confused with all 1 class then the other.</span>
+
+    <span class="n">X</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="k">for</span> <span class="n">seq</span><span class="p">,</span> <span class="n">target</span> <span class="ow">in</span> <span class="n">sequential_data</span><span class="p">:</span>  <span class="c1"># going over our new sequential data</span>
+        <span class="n">X</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">seq</span><span class="p">)</span>  <span class="c1"># X is the sequences</span>
+        <span class="n">y</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">target</span><span class="p">)</span>  <span class="c1"># y is the targets/labels (buys vs sell/notbuy)</span>
+
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">X</span><span class="p">),</span> <span class="n">y</span>  <span class="c1"># return X and y...and make X a numpy array!</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Full code up to this point:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">from</span> <span class="nn">collections</span> <span class="k">import</span> <span class="n">deque</span>
+<span class="kn">import</span> <span class="nn">random</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">sklearn</span> <span class="k">import</span> <span class="n">preprocessing</span>
+
+<span class="n">SEQ_LEN</span> <span class="o">=</span> <span class="mi">60</span>  <span class="c1"># how long of a preceeding sequence to collect for RNN</span>
+<span class="n">FUTURE_PERIOD_PREDICT</span> <span class="o">=</span> <span class="mi">3</span>  <span class="c1"># how far into the future are we trying to predict?</span>
+<span class="n">RATIO_TO_PREDICT</span> <span class="o">=</span> <span class="s2">"LTC-USD"</span>
+
+
+<span class="k">def</span> <span class="nf">classify</span><span class="p">(</span><span class="n">current</span><span class="p">,</span> <span class="n">future</span><span class="p">):</span>
+    <span class="k">if</span> <span class="nb">float</span><span class="p">(</span><span class="n">future</span><span class="p">)</span> <span class="o">&gt;</span> <span class="nb">float</span><span class="p">(</span><span class="n">current</span><span class="p">):</span>  <span class="c1"># if the future price is higher than the current, that's a buy, or a 1</span>
+        <span class="k">return</span> <span class="mi">1</span>
+    <span class="k">else</span><span class="p">:</span>  <span class="c1"># otherwise... it's a 0!</span>
+        <span class="k">return</span> <span class="mi">0</span>
+
+
+<span class="k">def</span> <span class="nf">preprocess_df</span><span class="p">(</span><span class="n">df</span><span class="p">):</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s2">"future"</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>  <span class="c1"># don't need this anymore.</span>
+
+    <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>  <span class="c1"># go through all of the columns</span>
+        <span class="k">if</span> <span class="n">col</span> <span class="o">!=</span> <span class="s2">"target"</span><span class="p">:</span>  <span class="c1"># normalize all ... except for the target itself!</span>
+            <span class="n">df</span><span class="p">[</span><span class="n">col</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">col</span><span class="p">]</span><span class="o">.</span><span class="n">pct_change</span><span class="p">()</span>  <span class="c1"># pct change "normalizes" the different currencies (each crypto coin has vastly diff values, we're really more interested in the other coin's movements)</span>
+            <span class="n">df</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>  <span class="c1"># remove the nas created by pct_change</span>
+            <span class="n">df</span><span class="p">[</span><span class="n">col</span><span class="p">]</span> <span class="o">=</span> <span class="n">preprocessing</span><span class="o">.</span><span class="n">scale</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">col</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>  <span class="c1"># scale between 0 and 1.</span>
+
+    <span class="n">df</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>  <span class="c1"># cleanup again... jic. Those nasty NaNs love to creep in.</span>
+
+    <span class="n">sequential_data</span> <span class="o">=</span> <span class="p">[]</span>  <span class="c1"># this is a list that will CONTAIN the sequences</span>
+    <span class="n">prev_days</span> <span class="o">=</span> <span class="n">deque</span><span class="p">(</span><span class="n">maxlen</span><span class="o">=</span><span class="n">SEQ_LEN</span><span class="p">)</span>  <span class="c1"># These will be our actual sequences. They are made with deque, which keeps the maximum length by popping out older values as new ones come in</span>
+
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">values</span><span class="p">:</span>  <span class="c1"># iterate over the values</span>
+        <span class="n">prev_days</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">n</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">i</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]])</span>  <span class="c1"># store all but the target</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">prev_days</span><span class="p">)</span> <span class="o">==</span> <span class="n">SEQ_LEN</span><span class="p">:</span>  <span class="c1"># make sure we have 60 sequences!</span>
+            <span class="n">sequential_data</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">prev_days</span><span class="p">),</span> <span class="n">i</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]])</span>  <span class="c1"># append those bad boys!</span>
+
+    <span class="n">random</span><span class="o">.</span><span class="n">shuffle</span><span class="p">(</span><span class="n">sequential_data</span><span class="p">)</span>  <span class="c1"># shuffle for good measure.</span>
+
+
+<span class="n">main_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span> <span class="c1"># begin empty</span>
+
+<span class="n">ratios</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"BTC-USD"</span><span class="p">,</span> <span class="s2">"LTC-USD"</span><span class="p">,</span> <span class="s2">"BCH-USD"</span><span class="p">,</span> <span class="s2">"ETH-USD"</span><span class="p">]</span>  <span class="c1"># the 4 ratios we want to consider</span>
+<span class="k">for</span> <span class="n">ratio</span> <span class="ow">in</span> <span class="n">ratios</span><span class="p">:</span>  <span class="c1"># begin iteration</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">ratio</span><span class="p">)</span>
+    <span class="n">dataset</span> <span class="o">=</span> <span class="n">f</span><span class="s1">'training_datas/</span><span class="si">{ratio}</span><span class="s1">.csv'</span>  <span class="c1"># get the full path to the file.</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">dataset</span><span class="p">,</span> <span class="n">names</span><span class="o">=</span><span class="p">[</span><span class="s1">'time'</span><span class="p">,</span> <span class="s1">'low'</span><span class="p">,</span> <span class="s1">'high'</span><span class="p">,</span> <span class="s1">'open'</span><span class="p">,</span> <span class="s1">'close'</span><span class="p">,</span> <span class="s1">'volume'</span><span class="p">])</span>  <span class="c1"># read in specific file</span>
+
+    <span class="c1"># rename volume and close to include the ticker so we can still which close/volume is which:</span>
+    <span class="n">df</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="s2">"close"</span><span class="p">:</span> <span class="n">f</span><span class="s2">"</span><span class="si">{ratio}</span><span class="s2">_close"</span><span class="p">,</span> <span class="s2">"volume"</span><span class="p">:</span> <span class="n">f</span><span class="s2">"</span><span class="si">{ratio}</span><span class="s2">_volume"</span><span class="p">},</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="n">df</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s2">"time"</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>  <span class="c1"># set time as index so we can join them on this shared time</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="p">[[</span><span class="n">f</span><span class="s2">"</span><span class="si">{ratio}</span><span class="s2">_close"</span><span class="p">,</span> <span class="n">f</span><span class="s2">"</span><span class="si">{ratio}</span><span class="s2">_volume"</span><span class="p">]]</span>  <span class="c1"># ignore the other columns besides price and volume</span>
+
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">main_df</span><span class="p">)</span><span class="o">==</span><span class="mi">0</span><span class="p">:</span>  <span class="c1"># if the dataframe is empty</span>
+        <span class="n">main_df</span> <span class="o">=</span> <span class="n">df</span>  <span class="c1"># then it's just the current df</span>
+    <span class="k">else</span><span class="p">:</span>  <span class="c1"># otherwise, join this data to the main one</span>
+        <span class="n">main_df</span> <span class="o">=</span> <span class="n">main_df</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+
+<span class="n">main_df</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s2">"ffill"</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>  <span class="c1"># if there are gaps in data, use previously known values</span>
+<span class="n">main_df</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="c1">#print(main_df.head())  # how did we do??</span>
+
+<span class="n">main_df</span><span class="p">[</span><span class="s1">'future'</span><span class="p">]</span> <span class="o">=</span> <span class="n">main_df</span><span class="p">[</span><span class="n">f</span><span class="s1">'</span><span class="si">{RATIO_TO_PREDICT}</span><span class="s1">_close'</span><span class="p">]</span><span class="o">.</span><span class="n">shift</span><span class="p">(</span><span class="o">-</span><span class="n">FUTURE_PERIOD_PREDICT</span><span class="p">)</span>
+<span class="n">main_df</span><span class="p">[</span><span class="s1">'target'</span><span class="p">]</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="n">classify</span><span class="p">,</span> <span class="n">main_df</span><span class="p">[</span><span class="n">f</span><span class="s1">'</span><span class="si">{RATIO_TO_PREDICT}</span><span class="s1">_close'</span><span class="p">],</span> <span class="n">main_df</span><span class="p">[</span><span class="s1">'future'</span><span class="p">]))</span>
+
+<span class="c1">#print(main_df.head())</span>
+
+<span class="n">times</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">main_df</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>  <span class="c1"># get the times</span>
+<span class="n">last_5pct</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">main_df</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">values</span><span class="p">)[</span><span class="o">-</span><span class="nb">int</span><span class="p">(</span><span class="mf">0.05</span><span class="o">*</span><span class="nb">len</span><span class="p">(</span><span class="n">times</span><span class="p">))]</span>  <span class="c1"># get the last 5% of the times</span>
+
+<span class="n">validation_main_df</span> <span class="o">=</span> <span class="n">main_df</span><span class="p">[(</span><span class="n">main_df</span><span class="o">.</span><span class="n">index</span> <span class="o">&gt;=</span> <span class="n">last_5pct</span><span class="p">)]</span>  <span class="c1"># make the validation data where the index is in the last 5%</span>
+<span class="n">main_df</span> <span class="o">=</span> <span class="n">main_df</span><span class="p">[(</span><span class="n">main_df</span><span class="o">.</span><span class="n">index</span> <span class="o">&lt;</span> <span class="n">last_5pct</span><span class="p">)]</span>  <span class="c1"># now the main_df is all the data up to the last 5%</span>
+
+
+<span class="k">def</span> <span class="nf">preprocess_df</span><span class="p">(</span><span class="n">df</span><span class="p">):</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s2">"future"</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>  <span class="c1"># don't need this anymore.</span>
+
+    <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>  <span class="c1"># go through all of the columns</span>
+        <span class="k">if</span> <span class="n">col</span> <span class="o">!=</span> <span class="s2">"target"</span><span class="p">:</span>  <span class="c1"># normalize all ... except for the target itself!</span>
+            <span class="n">df</span><span class="p">[</span><span class="n">col</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">col</span><span class="p">]</span><span class="o">.</span><span class="n">pct_change</span><span class="p">()</span>  <span class="c1"># pct change "normalizes" the different currencies (each crypto coin has vastly diff values, we're really more interested in the other coin's movements)</span>
+            <span class="n">df</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>  <span class="c1"># remove the nas created by pct_change</span>
+            <span class="n">df</span><span class="p">[</span><span class="n">col</span><span class="p">]</span> <span class="o">=</span> <span class="n">preprocessing</span><span class="o">.</span><span class="n">scale</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">col</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>  <span class="c1"># scale between 0 and 1.</span>
+
+    <span class="n">df</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>  <span class="c1"># cleanup again... jic.</span>
+
+
+    <span class="n">sequential_data</span> <span class="o">=</span> <span class="p">[]</span>  <span class="c1"># this is a list that will CONTAIN the sequences</span>
+    <span class="n">prev_days</span> <span class="o">=</span> <span class="n">deque</span><span class="p">(</span><span class="n">maxlen</span><span class="o">=</span><span class="n">SEQ_LEN</span><span class="p">)</span>  <span class="c1"># These will be our actual sequences. They are made with deque, which keeps the maximum length by popping out older values as new ones come in</span>
+
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">values</span><span class="p">:</span>  <span class="c1"># iterate over the values</span>
+        <span class="n">prev_days</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">n</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">i</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]])</span>  <span class="c1"># store all but the target</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">prev_days</span><span class="p">)</span> <span class="o">==</span> <span class="n">SEQ_LEN</span><span class="p">:</span>  <span class="c1"># make sure we have 60 sequences!</span>
+            <span class="n">sequential_data</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">prev_days</span><span class="p">),</span> <span class="n">i</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]])</span>  <span class="c1"># append those bad boys!</span>
+
+    <span class="n">random</span><span class="o">.</span><span class="n">shuffle</span><span class="p">(</span><span class="n">sequential_data</span><span class="p">)</span>  <span class="c1"># shuffle for good measure.</span>
+
+    <span class="n">buys</span> <span class="o">=</span> <span class="p">[]</span>  <span class="c1"># list that will store our buy sequences and targets</span>
+    <span class="n">sells</span> <span class="o">=</span> <span class="p">[]</span>  <span class="c1"># list that will store our sell sequences and targets</span>
+
+    <span class="k">for</span> <span class="n">seq</span><span class="p">,</span> <span class="n">target</span> <span class="ow">in</span> <span class="n">sequential_data</span><span class="p">:</span>  <span class="c1"># iterate over the sequential data</span>
+        <span class="k">if</span> <span class="n">target</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>  <span class="c1"># if it's a "not buy"</span>
+            <span class="n">sells</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">seq</span><span class="p">,</span> <span class="n">target</span><span class="p">])</span>  <span class="c1"># append to sells list</span>
+        <span class="k">elif</span> <span class="n">target</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>  <span class="c1"># otherwise if the target is a 1...</span>
+            <span class="n">buys</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">seq</span><span class="p">,</span> <span class="n">target</span><span class="p">])</span>  <span class="c1"># it's a buy!</span>
+
+    <span class="n">random</span><span class="o">.</span><span class="n">shuffle</span><span class="p">(</span><span class="n">buys</span><span class="p">)</span>  <span class="c1"># shuffle the buys</span>
+    <span class="n">random</span><span class="o">.</span><span class="n">shuffle</span><span class="p">(</span><span class="n">sells</span><span class="p">)</span>  <span class="c1"># shuffle the sells!</span>
+
+    <span class="n">lower</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">buys</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">sells</span><span class="p">))</span>  <span class="c1"># what's the shorter length?</span>
+
+    <span class="n">buys</span> <span class="o">=</span> <span class="n">buys</span><span class="p">[:</span><span class="n">lower</span><span class="p">]</span>  <span class="c1"># make sure both lists are only up to the shortest length.</span>
+    <span class="n">sells</span> <span class="o">=</span> <span class="n">sells</span><span class="p">[:</span><span class="n">lower</span><span class="p">]</span>  <span class="c1"># make sure both lists are only up to the shortest length.</span>
+
+    <span class="n">sequential_data</span> <span class="o">=</span> <span class="n">buys</span><span class="o">+</span><span class="n">sells</span>  <span class="c1"># add them together</span>
+    <span class="n">random</span><span class="o">.</span><span class="n">shuffle</span><span class="p">(</span><span class="n">sequential_data</span><span class="p">)</span>  <span class="c1"># another shuffle, so the model doesn't get confused with all 1 class then the other.</span>
+
+    <span class="n">X</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="k">for</span> <span class="n">seq</span><span class="p">,</span> <span class="n">target</span> <span class="ow">in</span> <span class="n">sequential_data</span><span class="p">:</span>  <span class="c1"># going over our new sequential data</span>
+        <span class="n">X</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">seq</span><span class="p">)</span>  <span class="c1"># X is the sequences</span>
+        <span class="n">y</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">target</span><span class="p">)</span>  <span class="c1"># y is the targets/labels (buys vs sell/notbuy)</span>
+
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">X</span><span class="p">),</span> <span class="n">y</span>  <span class="c1"># return X and y...and make X a numpy array!</span>
+
+
+<span class="n">main_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span> <span class="c1"># begin empty</span>
+
+<span class="n">ratios</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"BTC-USD"</span><span class="p">,</span> <span class="s2">"LTC-USD"</span><span class="p">,</span> <span class="s2">"BCH-USD"</span><span class="p">,</span> <span class="s2">"ETH-USD"</span><span class="p">]</span>  <span class="c1"># the 4 ratios we want to consider</span>
+<span class="k">for</span> <span class="n">ratio</span> <span class="ow">in</span> <span class="n">ratios</span><span class="p">:</span>  <span class="c1"># begin iteration</span>
+
+    <span class="n">ratio</span> <span class="o">=</span> <span class="n">ratio</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">'.csv'</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>  <span class="c1"># split away the ticker from the file-name</span>
+    <span class="n">dataset</span> <span class="o">=</span> <span class="n">f</span><span class="s1">'training_datas/</span><span class="si">{ratio}</span><span class="s1">.csv'</span>  <span class="c1"># get the full path to the file.</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">dataset</span><span class="p">,</span> <span class="n">names</span><span class="o">=</span><span class="p">[</span><span class="s1">'time'</span><span class="p">,</span> <span class="s1">'low'</span><span class="p">,</span> <span class="s1">'high'</span><span class="p">,</span> <span class="s1">'open'</span><span class="p">,</span> <span class="s1">'close'</span><span class="p">,</span> <span class="s1">'volume'</span><span class="p">])</span>  <span class="c1"># read in specific file</span>
+
+    <span class="c1"># rename volume and close to include the ticker so we can still which close/volume is which:</span>
+    <span class="n">df</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="s2">"close"</span><span class="p">:</span> <span class="n">f</span><span class="s2">"</span><span class="si">{ratio}</span><span class="s2">_close"</span><span class="p">,</span> <span class="s2">"volume"</span><span class="p">:</span> <span class="n">f</span><span class="s2">"</span><span class="si">{ratio}</span><span class="s2">_volume"</span><span class="p">},</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="n">df</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s2">"time"</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>  <span class="c1"># set time as index so we can join them on this shared time</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="p">[[</span><span class="n">f</span><span class="s2">"</span><span class="si">{ratio}</span><span class="s2">_close"</span><span class="p">,</span> <span class="n">f</span><span class="s2">"</span><span class="si">{ratio}</span><span class="s2">_volume"</span><span class="p">]]</span>  <span class="c1"># ignore the other columns besides price and volume</span>
+
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">main_df</span><span class="p">)</span><span class="o">==</span><span class="mi">0</span><span class="p">:</span>  <span class="c1"># if the dataframe is empty</span>
+        <span class="n">main_df</span> <span class="o">=</span> <span class="n">df</span>  <span class="c1"># then it's just the current df</span>
+    <span class="k">else</span><span class="p">:</span>  <span class="c1"># otherwise, join this data to the main one</span>
+        <span class="n">main_df</span> <span class="o">=</span> <span class="n">main_df</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+
+<span class="n">main_df</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s2">"ffill"</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>  <span class="c1"># if there are gaps in data, use previously known values</span>
+<span class="n">main_df</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="c1">#print(main_df.head())  # how did we do??</span>
+
+<span class="n">main_df</span><span class="p">[</span><span class="s1">'future'</span><span class="p">]</span> <span class="o">=</span> <span class="n">main_df</span><span class="p">[</span><span class="n">f</span><span class="s1">'</span><span class="si">{RATIO_TO_PREDICT}</span><span class="s1">_close'</span><span class="p">]</span><span class="o">.</span><span class="n">shift</span><span class="p">(</span><span class="o">-</span><span class="n">FUTURE_PERIOD_PREDICT</span><span class="p">)</span>
+<span class="n">main_df</span><span class="p">[</span><span class="s1">'target'</span><span class="p">]</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="n">classify</span><span class="p">,</span> <span class="n">main_df</span><span class="p">[</span><span class="n">f</span><span class="s1">'</span><span class="si">{RATIO_TO_PREDICT}</span><span class="s1">_close'</span><span class="p">],</span> <span class="n">main_df</span><span class="p">[</span><span class="s1">'future'</span><span class="p">]))</span>
+
+<span class="n">main_df</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="c1">## here, split away some slice of the future data from the main main_df.</span>
+<span class="n">times</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">main_df</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>
+<span class="n">last_5pct</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">main_df</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">values</span><span class="p">)[</span><span class="o">-</span><span class="nb">int</span><span class="p">(</span><span class="mf">0.05</span><span class="o">*</span><span class="nb">len</span><span class="p">(</span><span class="n">times</span><span class="p">))]</span>
+
+<span class="n">validation_main_df</span> <span class="o">=</span> <span class="n">main_df</span><span class="p">[(</span><span class="n">main_df</span><span class="o">.</span><span class="n">index</span> <span class="o">&gt;=</span> <span class="n">last_5pct</span><span class="p">)]</span>
+<span class="n">main_df</span> <span class="o">=</span> <span class="n">main_df</span><span class="p">[(</span><span class="n">main_df</span><span class="o">.</span><span class="n">index</span> <span class="o">&lt;</span> <span class="n">last_5pct</span><span class="p">)]</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>BTC-USD
+LTC-USD
+BCH-USD
+ETH-USD
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>We can now preprocess our data with:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">train_x</span><span class="p">,</span> <span class="n">train_y</span> <span class="o">=</span> <span class="n">preprocess_df</span><span class="p">(</span><span class="n">main_df</span><span class="p">)</span>
+<span class="n">validation_x</span><span class="p">,</span> <span class="n">validation_y</span> <span class="o">=</span> <span class="n">preprocess_df</span><span class="p">(</span><span class="n">validation_main_df</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Not the most efficient code ever written, but it does its job. I hope anyway. Hey did I mention: this code is for educational use only!? I am not liable for your losses!</p>
+<p>Okay, let's print some stats real quick to make sure things are what we expect:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="s2">"train data: {len(train_x)} validation: {len(validation_x)}"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="s2">"Dont buys: {train_y.count(0)}, buys: {train_y.count(1)}"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="s2">"VALIDATION Dont buys: {validation_y.count(0)}, buys: {validation_y.count(1)}"</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>train data: 77922 validation: 3860
+Dont buys: 38961, buys: 38961
+VALIDATION Dont buys: 1930, buys: 1930
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>In the next tutorial, we'll build our model and train it, finally!</p>
+
+</div>
+</div>
+</div>
+    </div>
+  </div>
+
+
+
+
+
+
+        
+
+		
+
+		
+		
+
+
+
+		<p>The next tutorial: <a title="Cryptocurrency-predicting RNN Model - Deep Learning basics with Python, TensorFlow and Keras p.11" href="https://pythonprogramming.net/crypto-rnn-model-deep-learning-python-tensorflow-keras/?completed=/balancing-rnn-data-deep-learning-python-tensorflow-keras/"><button class="btn" style="background-color:#FFD166; color:#000000">Cryptocurrency-predicting RNN Model - Deep Learning basics with Python, TensorFlow and Keras p.11</button></a></p>
+
+		
+
+
+
+
+
+<br>
+	  </div>
+
+</div>
+<div class="col l4 m12 s12">
+<br><br><br>
+
+  <ul class="collapsible popout" data-collapsible="accordion" style="font-size:85%; padding-left:50px">
+
+
+  		<!-- C.A. : -->
+
+	    
+	    	
+        <a href="https://bit.ly/2FROSRQ?a=18&amp;t=/balancing-rnn-data-deep-learning-python-tensorflow-keras/" id="process_click">
+          <div class="card hoverable" style="max-width:400px; align-items: left;">
+            <div class="card-image">
+              <img id="process_click" class="responsive-img" src="./Python Programming Tutorials_files/paperspace-1.png">
+            </div>
+          </div>
+        </a>
+        
+		
+
+  		<!--HONLY -->
+
+  	    
+
+
+
+	
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+			
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+			
+			   
+				  
+			   
+			
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+			
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+			
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+			
+			   
+				  
+			   
+			
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+			
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+			
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+			
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+			
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+			
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+			
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+			
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+			
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+			
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+			
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+			
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+			
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+			
+			   
+				  
+			   
+			
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+			
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+			
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+			
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+			
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+			
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+			
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+			
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+
+				     
+						 
+							
+								<li>
+								  <div class="collapsible-header">Introduction to Deep Learning - Deep Learning basics with Python, TensorFlow and Keras p.1</div>
+								  <div class="collapsible-body" style="">
+										<p><a href="https://pythonprogramming.net/introduction-deep-learning-python-tensorflow-keras/"><button class="btn waves-effect waves-light right-align" style="background-color:#FFD166; color:#000000">Go
+									  </button></a></p>
+								  </div>
+								</li>
+							
+						 
+							
+								<li>
+								  <div class="collapsible-header">Loading in your own data - Deep Learning basics with Python, TensorFlow and Keras p.2</div>
+								  <div class="collapsible-body" style="">
+										<p><a href="https://pythonprogramming.net/loading-custom-data-deep-learning-python-tensorflow-keras/"><button class="btn waves-effect waves-light right-align" style="background-color:#FFD166; color:#000000">Go
+									  </button></a></p>
+								  </div>
+								</li>
+							
+						 
+							
+								<li>
+								  <div class="collapsible-header">Convolutional Neural Networks - Deep Learning basics with Python, TensorFlow and Keras p.3</div>
+								  <div class="collapsible-body" style="">
+										<p><a href="https://pythonprogramming.net/convolutional-neural-network-deep-learning-python-tensorflow-keras/"><button class="btn waves-effect waves-light right-align" style="background-color:#FFD166; color:#000000">Go
+									  </button></a></p>
+								  </div>
+								</li>
+							
+						 
+							
+								<li>
+								  <div class="collapsible-header">Analyzing Models with TensorBoard - Deep Learning basics with Python, TensorFlow and Keras p.4</div>
+								  <div class="collapsible-body" style="">
+										<p><a href="https://pythonprogramming.net/tensorboard-analysis-deep-learning-python-tensorflow-keras/"><button class="btn waves-effect waves-light right-align" style="background-color:#FFD166; color:#000000">Go
+									  </button></a></p>
+								  </div>
+								</li>
+							
+						 
+							
+								<li>
+								  <div class="collapsible-header">Optimizing Models with TensorBoard - Deep Learning basics with Python, TensorFlow and Keras p.5</div>
+								  <div class="collapsible-body" style="">
+										<p><a href="https://pythonprogramming.net/tensorboard-optimizing-models-deep-learning-python-tensorflow-keras/"><button class="btn waves-effect waves-light right-align" style="background-color:#FFD166; color:#000000">Go
+									  </button></a></p>
+								  </div>
+								</li>
+							
+						 
+							
+								<li>
+								  <div class="collapsible-header">How to use your trained model - Deep Learning basics with Python, TensorFlow and Keras p.6</div>
+								  <div class="collapsible-body" style="">
+										<p><a href="https://pythonprogramming.net/using-trained-model-deep-learning-python-tensorflow-keras/"><button class="btn waves-effect waves-light right-align" style="background-color:#FFD166; color:#000000">Go
+									  </button></a></p>
+								  </div>
+								</li>
+							
+						 
+							
+								<li>
+								  <div class="collapsible-header">Recurrent Neural Networks - Deep Learning basics with Python, TensorFlow and Keras p.7</div>
+								  <div class="collapsible-body" style="">
+										<p><a href="https://pythonprogramming.net/recurrent-neural-network-deep-learning-python-tensorflow-keras/"><button class="btn waves-effect waves-light right-align" style="background-color:#FFD166; color:#000000">Go
+									  </button></a></p>
+								  </div>
+								</li>
+							
+						 
+							
+								<li>
+								  <div class="collapsible-header">Creating a Cryptocurrency-predicting finance recurrent neural network - Deep Learning basics with Python, TensorFlow and Keras p.8</div>
+								  <div class="collapsible-body" style="">
+										<p><a href="https://pythonprogramming.net/cryptocurrency-recurrent-neural-network-deep-learning-python-tensorflow-keras/"><button class="btn waves-effect waves-light right-align" style="background-color:#FFD166; color:#000000">Go
+									  </button></a></p>
+								  </div>
+								</li>
+							
+						 
+							
+								<li>
+								  <div class="collapsible-header">Normalizing and creating sequences for our cryptocurrency predicting RNN - Deep Learning basics with Python, TensorFlow and Keras p.9</div>
+								  <div class="collapsible-body" style="">
+										<p><a href="https://pythonprogramming.net/normalizing-sequences-deep-learning-python-tensorflow-keras/"><button class="btn waves-effect waves-light right-align" style="background-color:#FFD166; color:#000000">Go
+									  </button></a></p>
+								  </div>
+								</li>
+							
+						 
+							
+							    <li class="active">
+								  <div class="collapsible-header active" style="padding:2px">Balancing Recurrent Neural Network sequence data for our crypto predicting RNN - Deep Learning basics with Python, TensorFlow and Keras p.10</div>
+
+								</li>
+							
+						 
+							
+								<li>
+								  <div class="collapsible-header">Cryptocurrency-predicting RNN Model - Deep Learning basics with Python, TensorFlow and Keras p.11</div>
+								  <div class="collapsible-body" style="">
+										<p><a href="https://pythonprogramming.net/crypto-rnn-model-deep-learning-python-tensorflow-keras/"><button class="btn waves-effect waves-light right-align" style="background-color:#FFD166; color:#000000">Go
+									  </button></a></p>
+								  </div>
+								</li>
+							
+						 
+					  
+				  
+			   
+				  
+			   
+			
+			   
+				  
+			   
+			
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+			
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+			
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+			
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+			
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+			
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+			
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+			
+			   
+				  
+			   
+				  
+			   
+			
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+			
+			   
+				  
+			   
+			
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+			
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+			
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+			
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+			
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+			
+			   
+				  
+			   
+			
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+			
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+			
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+			
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+			
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+			
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+			
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+			
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+			
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+			
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+			
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+			
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+			
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+			
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+			
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+			
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+			
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+				  
+			   
+			
+
+  </ul>
+
+
+</div>
+</div>
+
+
+
+			</div>
+		
+
+		<!--login modal-->
+		
+
+		<!--Register modal-->
+		
+
+
+		<script>
+			$(document).ready(function(){
+				$(".button-collapse").sideNav();
+				$('.modal-trigger').leanModal();
+				$('.collapsible').collapsible({
+				  accordion : false // A setting that changes the collapsible behavior to expandable instead of the default accordion style
+				});
+				$('#aside').pushpin({ top:110, bottom:500 });
+		  });
+		</script>
+		<script>
+		  $(document).ready(function(){
+			$('.collapsible').collapsible({
+			  accordion : false // A setting that changes the collapsible behavior to expandable instead of the default accordion style
+			});
+			$('select').material_select();
+		  });
+	  </script>
+	  <script>
+		function goBack() {
+			window.history.back()
+		}
+	</script>
+		
+
+	
+
+<footer class="page-footer">
+          <div class="container">
+            <div class="row">
+              <div class="col l6 s12">
+                <h5 class="white-text">You've reached the end!</h5>
+
+                <p class="grey-text text-lighten-4">Contact: Harrison@pythonprogramming.net.</p>
+                <ul>
+                  <li><a class="grey-text text-lighten-3" href="https://pythonprogramming.net/support-donate/">Support this Website!</a></li>
+                  <li><a class="grey-text text-lighten-3" href="https://pythonprogramming.net/consulting/">Consulting and Contracting</a></li>
+                  <li><a class="grey-text text-lighten-3" href="https://www.facebook.com/pythonprogramming.net/">Facebook</a></li>
+                  <li><a class="grey-text text-lighten-3" href="https://twitter.com/sentdex">Twitter</a></li>
+                  <li><a class="grey-text text-lighten-3" href="https://instagram/sentdex">Instagram</a></li>
+                </ul>
+              </div>
+              <div class="col l4 offset-l2 s12">
+                <h6 class="white-text">Legal stuff:</h6>
+                <ul>
+                  <li><a class="grey-text text-lighten-3" href="https://pythonprogramming.net/about/tos/">Terms and Conditions</a></li>
+                  <li><a class="grey-text text-lighten-3" href="https://pythonprogramming.net/about/privacy-policy/">Privacy Policy</a></li>
+
+                </ul>
+              </div>
+            </div>
+          </div>
+          <a href="https://xkcd.com/353/" target="blank"><p class="grey-text right" style="padding-right:10px">Programming is a superpower.</p></a>
+          <div class="footer-copyright">
+            <div class="container">
+            © OVER 9000! PythonProgramming.net
+
+            </div>
+
+          </div>
+        </footer>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="material-tooltip" id="9876c73a-f566-a955-be72-70c04566ebc9" style="opacity: 0; margin-top: 0px; margin-left: 0px; display: none;"><span>sudo apt-get upgrade</span><div class="backdrop" style="top: 0px; left: 0px; opacity: 0; transform: scale(1); display: none;"></div></div><div class="material-tooltip" id="25399550-6407-ac42-4886-6a0777c2ce55"><span>sudo apt-get upgrade</span><div class="backdrop" style="top: 0px; left: 0px;"></div></div><div class="hiddendiv common"></div></body></html>
